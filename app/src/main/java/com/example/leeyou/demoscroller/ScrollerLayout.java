@@ -56,6 +56,21 @@ public class ScrollerLayout extends ViewGroup {
             for (int i = 0; i < childCount; i++) {
                 View childAt = getChildAt(i);
                 childAt.layout(i * childAt.getMeasuredWidth(), 0, (i + 1) * childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
+
+                childAt.setOnTouchListener(new OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        switch (event.getAction()) {
+                            case MotionEvent.ACTION_DOWN:
+                                Log.e(TAG, "consume ACTION_DOWN");
+                                break;
+                            case MotionEvent.ACTION_MOVE:
+                                Log.e(TAG, "consume ACTION_MOVE");
+                                break;
+                        }
+                        return true;//onTouchEvent方法将不会被调用,OnTouchListener消耗掉了这个事件
+                    }
+                });
             }
 
             // 初始化左右边界值
