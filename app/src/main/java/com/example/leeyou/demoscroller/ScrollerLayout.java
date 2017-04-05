@@ -14,27 +14,21 @@ public class ScrollerLayout extends ViewGroup {
     public static final String TAG = ScrollerLayout.class.getSimpleName();
 
     private Scroller mScroller;
-
     private int mTouchSlop;
 
     private float mXDown;
-
     private float mXMove;
-
     private float mXLastMove;
-
     private int leftBorder;
-
     private int rightBorder;
-
 
     public ScrollerLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         // 第一步，创建Scroller的实例
         mScroller = new Scroller(context);
-        ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
 
+        ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
         mTouchSlop = ViewConfigurationCompat.getScaledPagingTouchSlop(viewConfiguration);
     }
 
@@ -106,7 +100,6 @@ public class ScrollerLayout extends ViewGroup {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
         switch (event.getAction()) {
             case MotionEvent.ACTION_MOVE:
                 mXMove = event.getRawX();
